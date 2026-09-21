@@ -35,7 +35,7 @@ const updatedSongs = [
 ];
 
 async function update() {
-  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/beatbox');
+  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/musicbox');
   const Song = mongoose.model('Song', new mongoose.Schema({}, { strict: false }));
   
   for (const item of updatedSongs) {

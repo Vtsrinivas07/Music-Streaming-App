@@ -35,7 +35,7 @@ export const PlayerProvider = ({ children }) => {
   // Liked Songs Management
   const [likedSongs, setLikedSongs] = useState(() => {
     try {
-      const cached = localStorage.getItem('musicbox_liked_songs') || localStorage.getItem('beatbox_liked_songs');
+      const cached = localStorage.getItem('musicbox_liked_songs');
       return cached ? JSON.parse(cached) : [];
     } catch {
       return [];
@@ -45,7 +45,7 @@ export const PlayerProvider = ({ children }) => {
   // User Custom Playlists Management
   const [userPlaylists, setUserPlaylists] = useState(() => {
     try {
-      const cached = localStorage.getItem('musicbox_user_playlists') || localStorage.getItem('beatbox_user_playlists');
+      const cached = localStorage.getItem('musicbox_user_playlists');
       return cached ? JSON.parse(cached) : [
         {
           _id: 'pl-my-favorites-default',

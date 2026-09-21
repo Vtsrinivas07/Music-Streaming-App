@@ -32,9 +32,9 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: '3.0.0',
     info: {
-      title: 'BeatBox API',
+      title: 'MUSICBOX API',
       version: '1.0.0',
-      description: 'BeatBox Music Streaming API',
+      description: 'MUSICBOX Music Streaming API',
     },
     servers: [
       {
@@ -63,7 +63,7 @@ app.use('/uploads', express.static('uploads'));
 
 // Root route
 app.get('/', (req, res) => {
-  res.send('Welcome to BeatBox Music API');
+  res.send('Welcome to MUSICBOX Music API');
 });
 
 // Use the custom error handler middleware
@@ -71,7 +71,7 @@ app.use(errorHandler);
 
 // Database connection
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/beatbox', {
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/musicbox', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

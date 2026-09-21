@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs');
 
 async function runSeed() {
     try {
-        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/beatbox', {
+        await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/musicbox', {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });

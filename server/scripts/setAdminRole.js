@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function setAdmin() {
   try {
-    await mongoose.connect('mongodb://localhost:27017/beatbox');
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/musicbox');
     const res = await mongoose.connection.collection('users').updateOne(
       { username: 'admin' },
       { $set: { role: 'admin' } }

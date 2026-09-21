@@ -20,7 +20,7 @@ async function seedDatabase() {
         const adminPassword = await bcrypt.hash('admin123', 10);
         const admin = await User.create({
             username: 'admin',
-            email: 'admin@beatbox.com',
+            email: 'admin@musicbox.com',
             password: adminPassword,
             role: 'admin'
         });

@@ -1,5 +1,5 @@
 {
-  "name": "beatbox-client",
+  "name": "musicbox-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
