@@ -75,7 +75,7 @@ UserSchema.methods.getSignedJwtToken = function () {
     { id: this._id, role: this.role },
     process.env.JWT_SECRET,
     {
-      expiresIn: process.env.JWT_EXPIRE,
+      expiresIn: process.env.JWT_EXPIRE || '30d',
     }
   );
 };
