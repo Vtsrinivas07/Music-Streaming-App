@@ -1,8 +1,9 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 async function updateCredentials() {
   try {
-    await mongoose.connect('mongodb://localhost:27017/beatbox');
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/beatbox');
     
     // Update admin
     await mongoose.connection.collection('users').updateOne(
