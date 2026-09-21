@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaTimes, FaPlus, FaCheck, FaMusic } from 'react-icons/fa';
+import { FaTimes, FaPlus, FaCheck } from 'react-icons/fa';
 import { usePlayer } from '../../context/PlayerContext';
 
 const Overlay = styled.div`

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import { FaPlay, FaPause, FaTrash, FaMusic, FaArrowLeft } from 'react-icons/fa';
-import { useAuth } from '../context/AuthContext';
 import { usePlayer } from '../context/PlayerContext';
 import SongList from '../components/songs/SongList';
 import { CURATED_PLAYLISTS, FALLBACK_TRACKS } from '../services/musicApiService';

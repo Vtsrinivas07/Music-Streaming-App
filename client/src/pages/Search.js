@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaSearch, FaTimes, FaMusic, FaFire } from 'react-icons/fa';
 import SongList from '../components/songs/SongList';
-import { searchFreeMusic, FALLBACK_TRACKS } from '../services/musicApiService';
+import { searchFreeMusic } from '../services/musicApiService';
 
 const Container = styled.div`
   max-width: 1300px;

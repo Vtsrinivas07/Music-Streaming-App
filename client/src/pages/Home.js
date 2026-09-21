@@ -17,8 +17,7 @@ import {
   FaRegHeart,
   FaPlus,
   FaBolt,
-  FaSyncAlt,
-  FaLayerGroup
+  FaSyncAlt
 } from 'react-icons/fa';
 import { usePlayer } from '../context/PlayerContext';
 import { 

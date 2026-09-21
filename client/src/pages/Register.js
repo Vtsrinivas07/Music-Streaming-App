@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
 const RegisterContainer = styled.div`

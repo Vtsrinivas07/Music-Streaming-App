@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaPlay, FaMusic, FaPlus } from 'react-icons/fa';
+import { FaPlay, FaPlus } from 'react-icons/fa';
 import { usePlayer } from '../../context/PlayerContext';
 
 const Grid = styled.div`

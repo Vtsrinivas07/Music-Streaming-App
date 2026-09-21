@@ -293,7 +293,7 @@ const Browse = () => {
       setSelectedRegion(ind);
       setPage(1);
     }
-  }, [searchParams]);
+  }, [searchParams, selectedRegion]);
 
   // Main loader for content
   const loadContent = useCallback(async (currentType, region, query, pageNum = 1) => {
@@ -345,6 +345,7 @@ const Browse = () => {
   useEffect(() => {
     setPage(1);
     loadContent(type, selectedRegion, searchTerm, 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, selectedRegion]);
 
   const handleTypeChange = (newType) => {

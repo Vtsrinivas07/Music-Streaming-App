@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaPlay, FaPause, FaHeart, FaRegHeart, FaPlus } from 'react-icons/fa';
 import { usePlayer } from '../../context/PlayerContext';
-import { useAuth } from '../../context/AuthContext';
 
 const TableContainer = styled.div`
   width: 100%;
@@ -176,7 +175,6 @@ const SongList = ({ songs = [] }) => {
     toggleLikeSong, 
     openAddToPlaylist 
   } = usePlayer();
-  const { user } = useAuth();
 
   const handlePlayPause = (song) => {
     if (currentSong?._id === song._id && isPlaying) {

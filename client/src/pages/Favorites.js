@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAuth } from '../context/AuthContext';
 import { usePlayer } from '../context/PlayerContext';
 import { FaHeart, FaMusic, FaPlay, FaPause } from 'react-icons/fa';
 import SongList from '../components/songs/SongList';

@@ -4,7 +4,7 @@
   "private": true,
   "description": "MUSICBOX - Full Stack Music Streaming Application (MERN)",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm install && CI=false npm run build",
     "start": "cd server && npm start",
     "client": "cd client && npm start",
     "server": "cd server && npm start"

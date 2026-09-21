@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../context/AuthContext';
-import api from '../utils/axios';
 
 const LoginContainer = styled.div`
   display: flex;

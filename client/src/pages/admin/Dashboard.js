@@ -253,7 +253,6 @@ const Dashboard = () => {
     totalAlbums: 5,
     totalPlaylists: 2,
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -264,8 +263,6 @@ const Dashboard = () => {
         }
       } catch (err) {
         console.error('Error fetching stats:', err);
-      } finally {
-        setLoading(false);
       }
     };
 
