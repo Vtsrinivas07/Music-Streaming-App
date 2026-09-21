@@ -1,6 +1,8 @@
 // Free Music API Service connecting to JioSaavn 320kbps Studio Full Songs & iTunes API
 // Provides 100% full-length songs (3-6 mins) for Tollywood (Telugu), Bollywood (Hindi), and Kollywood (Tamil) cinema!
 
+import { API_BASE } from '../utils/apiUrl';
+
 const ITUNES_BASE_URL = 'https://itunes.apple.com/search';
 
 // Helper to format track length in mm:ss
@@ -461,7 +463,7 @@ export const searchFreeMusic = async (term, limit = 24, page = 1) => {
   try {
     const encoded = encodeURIComponent(term.trim());
     // Try backend proxy for full songs (JioSaavn 320kbps)
-    const res = await fetch(`/api/music-api/search?q=${encoded}&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/search?q=${encoded}&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.success && json.data?.length > 0) {
@@ -485,7 +487,7 @@ export const searchFreeMusic = async (term, limit = 24, page = 1) => {
 // Fetch Tollywood Telugu Full Songs
 export const fetchTollywoodHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=tollywood&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=tollywood&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.success && json.data?.length > 0) return json.data;
@@ -499,7 +501,7 @@ export const fetchTollywoodHits = async (limit = 24, page = 1) => {
 // Fetch Bollywood Hindi Full Songs
 export const fetchBollywoodHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=bollywood&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=bollywood&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -513,7 +515,7 @@ export const fetchBollywoodHits = async (limit = 24, page = 1) => {
 // Fetch Kollywood Tamil Full Songs
 export const fetchKollywoodHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=kollywood&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=kollywood&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -527,7 +529,7 @@ export const fetchKollywoodHits = async (limit = 24, page = 1) => {
 // Fetch Hollywood English Full Songs
 export const fetchHollywoodHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=hollywood&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=hollywood&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -541,7 +543,7 @@ export const fetchHollywoodHits = async (limit = 24, page = 1) => {
 // Fetch Trending Hits
 export const fetchTrendingHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/trending?limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/trending?limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -555,7 +557,7 @@ export const fetchTrendingHits = async (limit = 24, page = 1) => {
 // Fetch Punjabi Full Songs
 export const fetchPunjabiHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=punjabi&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=punjabi&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -569,7 +571,7 @@ export const fetchPunjabiHits = async (limit = 24, page = 1) => {
 // Fetch Malayalam Mollywood Full Songs
 export const fetchMalayalamHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=malayalam&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=malayalam&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -583,7 +585,7 @@ export const fetchMalayalamHits = async (limit = 24, page = 1) => {
 // Fetch Kannada Sandalwood Full Songs
 export const fetchKannadaHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=kannada&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=kannada&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -597,7 +599,7 @@ export const fetchKannadaHits = async (limit = 24, page = 1) => {
 // Fetch Bhojpuri Full Songs
 export const fetchBhojpuriHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=bhojpuri&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=bhojpuri&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -611,7 +613,7 @@ export const fetchBhojpuriHits = async (limit = 24, page = 1) => {
 // Fetch Bengali Full Songs
 export const fetchBengaliHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=bengali&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=bengali&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -625,7 +627,7 @@ export const fetchBengaliHits = async (limit = 24, page = 1) => {
 // Fetch K-Pop & Global Full Songs
 export const fetchKPopHits = async (limit = 24, page = 1) => {
   try {
-    const res = await fetch(`/api/music-api/indian?industry=kpop&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/indian?industry=kpop&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;
@@ -650,7 +652,7 @@ export const fetchGenreTracks = async (genre, limit = 24, page = 1) => {
   if (genre === 'kpop') return fetchKPopHits(limit, page);
 
   try {
-    const res = await fetch(`/api/music-api/search?q=${encodeURIComponent(genre)}&limit=${limit}&page=${page}`);
+    const res = await fetch(`${API_BASE}/api/music-api/search?q=${encodeURIComponent(genre)}&limit=${limit}&page=${page}`);
     if (res.ok) {
       const json = await res.json();
       if (json.data?.length > 0) return json.data;

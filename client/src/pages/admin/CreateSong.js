@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Button } from '../../components/common/Button';
 import { FaArrowLeft, FaUpload } from 'react-icons/fa';
+import { API_BASE } from '../../utils/apiUrl';
 
 const Container = styled.div`
   padding: 2rem;
@@ -87,14 +88,16 @@ const CreateSong = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = localStorage.getItem('token');
+        const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
         const [artistsRes, albumsRes] = await Promise.all([
-          fetch('/api/admin/artists'),
-          fetch('/api/admin/albums')
+          fetch(`${API_BASE}/api/admin/artists`, { headers }),
+          fetch(`${API_BASE}/api/admin/albums`, { headers })
         ]);
         const artistsData = await artistsRes.json();
         const albumsData = await albumsRes.json();
-        setArtists(artistsData);
-        setAlbums(albumsData);
+        setArtists(Array.isArray(artistsData) ? artistsData : (artistsData?.data || []));
+        setAlbums(Array.isArray(albumsData) ? albumsData : (albumsData?.data || []));
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -129,8 +132,10 @@ const CreateSong = () => {
         if (value) formDataToSend.append(key, value);
       });
 
-      const response = await fetch('/api/admin/songs', {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE}/api/admin/songs`, {
         method: 'POST',
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {},
         body: formDataToSend
       });
 

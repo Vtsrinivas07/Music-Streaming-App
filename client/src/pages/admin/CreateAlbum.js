@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Button } from '../../components/common/Button';
 import { FaArrowLeft, FaUpload } from 'react-icons/fa';
+import { API_BASE } from '../../utils/apiUrl';
 
 const Container = styled.div`
   padding: 2rem;
@@ -84,9 +85,11 @@ const CreateAlbum = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await fetch('/api/admin/artists');
+        const token = localStorage.getItem('token');
+        const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+        const response = await fetch(`${API_BASE}/api/admin/artists`, { headers });
         const data = await response.json();
-        setArtists(data);
+        setArtists(Array.isArray(data) ? data : (data?.data || []));
         setLoading(false);
       } catch (error) {
         console.error('Error fetching artists:', error);
@@ -121,8 +124,10 @@ const CreateAlbum = () => {
         if (value) formDataToSend.append(key, value);
       });
 
-      const response = await fetch('/api/admin/albums', {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE}/api/admin/albums`, {
         method: 'POST',
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {},
         body: formDataToSend
       });
 

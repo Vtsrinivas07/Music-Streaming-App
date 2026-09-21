@@ -307,41 +307,47 @@ node serve.js
 
 ### Deploying Frontend on Vercel
 
-1. Push your code to GitHub.
-2. Sign in to [Vercel](https://vercel.com/) and click **"Add New Project"**.
-3. Select your repository and configure:
-   - **Root Directory**: `client`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `build`
-4. Add a `client/vercel.json` file to handle single-page application routing and API rewriting:
-   ```json
-   {
-     "rewrites": [
-       { "source": "/api/:path*", "destination": "https://your-backend.onrender.com/api/:path*" },
-       { "source": "/(.*)", "destination": "/index.html" }
-     ]
-   }
-   ```
-5. Click **Deploy**.
+> [!TIP]
+> **Fixing Vercel 404 (NOT_FOUND)**: If your Vercel deployment shows `404: NOT_FOUND`, it is because Vercel was looking at the root directory where no static build files were located. We have added a root `vercel.json` and `package.json`, but setting the **Root Directory** to `client` in Vercel is the recommended best practice.
+
+#### Method 1: Set Root Directory in Vercel (Recommended)
+1. Go to your [Vercel Dashboard](https://vercel.com/dashboard).
+2. Click on your project (`music-streaming-app-sandy`).
+3. Go to **Settings** &rarr; **General**.
+4. Under **Root Directory**, click **Edit**.
+5. Type or select `client` and click **Save**.
+6. Go to **Settings** &rarr; **Environment Variables** and add:
+   | Key | Value | Description |
+   |-----|-------|-------------|
+   | `REACT_APP_API_URL` | `https://your-render-app.onrender.com` | Your deployed Render backend URL (no trailing slash) |
+7. Go to the **Deployments** tab, click the three dots (`...`) on the latest deployment, and click **Redeploy**.
+
+#### Method 2: Automatic Root Build
+With the newly added root `vercel.json` and root `package.json`, Vercel will automatically run `cd client && npm install && npm run build` and serve from `client/build`. Simply trigger a redeployment in Vercel.
 
 ---
 
 ### Deploying Backend on Render
 
-1. Sign in to [Render](https://render.com/) and click **"New Web Service"**.
-2. Connect your GitHub repository.
-3. Configure the service:
+1. Sign in to [Render](https://render.com/) and click **"New +"** &rarr; **"Web Service"**.
+2. Connect your GitHub repository (`Music-Streaming-App`).
+3. Configure the service settings:
+   - **Name**: `musicbox-api` (or your preferred name)
    - **Root Directory**: `server`
    - **Environment**: `Node`
    - **Build Command**: `npm install`
    - **Start Command**: `npm start`
-4. In **Environment Variables**, configure:
-   - `NODE_ENV`: `production`
-   - `PORT`: `5000`
-   - `MONGODB_URI`: Your MongoDB Atlas connection URI
-   - `JWT_SECRET`: A secure random secret string
-   - `CLIENT_URL`: Your Vercel frontend URL
-5. Click **Deploy Web Service**.
+   - **Instance Type**: `Free`
+4. Under **Environment Variables**, add the following:
+   | Key | Value | Notes |
+   |-----|-------|-------|
+   | `NODE_ENV` | `production` | Production mode |
+   | `PORT` | `5000` | Port for Express server |
+   | `MONGODB_URI` | `mongodb+srv://<username>:<password>@...` | Your MongoDB Atlas connection string |
+   | `JWT_SECRET` | `your-secure-random-64-char-secret` | Generate using `crypto.randomBytes(64)` |
+   | `CLIENT_URL` | `https://music-streaming-app-sandy.vercel.app` | Your Vercel frontend URL |
+5. Click **Create Web Service**.
+6. Once deployed, copy your Render service URL (e.g., `https://musicbox-api.onrender.com`) and paste it as `REACT_APP_API_URL` in your Vercel project environment variables!
 
 ---
 

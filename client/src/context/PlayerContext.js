@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from './AuthContext';
+import { API_BASE } from '../utils/apiUrl';
 
 export const PlayerContext = createContext();
 
@@ -309,7 +310,7 @@ export const PlayerProvider = ({ children }) => {
     if (isPreview) {
       try {
         const queryTerm = `${resolvedSong.title} ${resolvedSong.artist?.name || resolvedSong.artistName || ''}`.trim();
-        const res = await fetch(`/api/music-api/search?q=${encodeURIComponent(queryTerm)}&limit=1`);
+        const res = await fetch(`${API_BASE}/api/music-api/search?q=${encodeURIComponent(queryTerm)}&limit=1`);
         if (res.ok) {
           const json = await res.json();
           if (json.data && json.data.length > 0 && json.data[0].audioUrl) {

@@ -1,6 +1,7 @@
 import api from '../utils/axios';
+import { API_BASE } from '../utils/apiUrl';
 
-const BASE_URL = '/api/admin';
+const BASE_URL = `${API_BASE}/api/admin`;
 
 const getAuthHeaders = () => ({
   'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_BASE } from '../utils/apiUrl';
 import styled from 'styled-components';
 import SongList from '../components/songs/SongList';
 import { Button } from '../components/common/Button';
@@ -101,7 +102,7 @@ const ArtistDetails = () => {
     const fetchArtist = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/artists/${id}`);
+        const response = await fetch(`${API_BASE}/api/artists/${id}`);
         if (!response.ok) throw new Error('Failed to fetch artist');
         const data = await response.json();
         setArtist(data);

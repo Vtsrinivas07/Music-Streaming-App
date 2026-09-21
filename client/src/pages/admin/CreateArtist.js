@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../../components/common/Button';
 import { FaArrowLeft, FaUpload } from 'react-icons/fa';
+import { API_BASE } from '../../utils/apiUrl';
 
 const Container = styled.div`
   padding: 2rem;
@@ -94,8 +95,10 @@ const CreateArtist = () => {
         if (value) formDataToSend.append(key, value);
       });
 
-      const response = await fetch('/api/admin/artists', {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE}/api/admin/artists`, {
         method: 'POST',
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {},
         body: formDataToSend
       });
 
